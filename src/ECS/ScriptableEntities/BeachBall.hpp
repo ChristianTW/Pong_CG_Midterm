@@ -32,6 +32,13 @@ public:
 
     void OnUpdate(float _dt)
     {
+        using namespace Canis; //if you're sick of using "Canis::" before all canis things.
+        Canis::Entity leftPaddle = entity.GetEntityWithTag("paddleLeft");
+        auto& rectLeftPaddle = leftPaddle.GetComponent<Canis::RectTransformComponent>();
+        auto& colorLeftPaddle = leftPaddle.GetComponent<Canis::ColorComponent>();
+
+        Log(std::to_string(rectLeftPaddle.position.y));
+
         auto& rect = GetComponent<Canis::RectTransformComponent>();
 
         float halfSizeX = rect.size.x/2.0f;
@@ -56,6 +63,15 @@ public:
         if (GetInputManager().JustPressedKey(SDLK_d))
         {
             GetScene().Instantiate("assets/prefebs/test_character.scene");
+        }
+        
+        if(GetInputManager().GetKey(SDL_SCANCODE_W))
+        {
+            //Canis::Log("W IS DOWN");
+        }
+        else
+        {
+            //Canis::Log("UP");
         }
     }
 };
