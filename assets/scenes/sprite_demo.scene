@@ -52,7 +52,7 @@ Entities:
       layer: 0
       mask: 0
     Canis::ScriptComponent: BeachBall
-  - 3:
+  - PaddleLeft:
     Canis::RectTransformComponent:
       active: true
       anchor: 6
@@ -73,3 +73,4 @@ Entities:
       layer: 0
       mask: 0
     Canis::ScriptComponent: Paddle
+    Canis::TagComponent: paddleLeft

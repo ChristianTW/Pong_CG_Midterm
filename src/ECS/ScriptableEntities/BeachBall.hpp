@@ -32,6 +32,13 @@ public:
 
     void OnUpdate(float _dt)
     {
+        using namespace Canis; //if you're sick of using "Canis::" before all canis things.
+        Canis::Entity leftPaddle = entity.GetEntityWithTag("paddleLeft");
+        auto& rectLeftPaddle = leftPaddle.GetComponent<Canis::RectTransformComponent>();
+        auto& colorLeftPaddle = leftPaddle.GetComponent<Canis::ColorComponent>();
+
+        Log(rectLeftPaddle.position.y);
+
         auto& rect = GetComponent<Canis::RectTransformComponent>();
 
         float halfSizeX = rect.size.x/2.0f;
