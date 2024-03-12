@@ -37,7 +37,7 @@ public:
         auto& rectLeftPaddle = leftPaddle.GetComponent<Canis::RectTransformComponent>();
         auto& colorLeftPaddle = leftPaddle.GetComponent<Canis::ColorComponent>();
 
-        Log(std::to_string(rectLeftPaddle.position.y));
+        //Log(std::to_string(rectLeftPaddle.position.x));
 
         auto& rect = GetComponent<Canis::RectTransformComponent>();
 
