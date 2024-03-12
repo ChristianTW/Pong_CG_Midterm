@@ -18,8 +18,8 @@ public:
     void OnCreate()
     {
         Canis::Log("Paddle Loaded");
-        leftPaddlePositionX = -608;
-        rightPaddlePositionX = 608;
+        leftPaddlePositionX = (GetWindow().GetScreenWidth()/-2.0f) + 32; //set paddle's x position to 32 before whatever edge of the screen its on
+        rightPaddlePositionX = (GetWindow().GetScreenWidth()/2.0f) - 32;
         leftPaddle = entity.GetEntityWithTag("paddleLeft");
         rightPaddle = entity.GetEntityWithTag("paddleRight");
     }
@@ -42,7 +42,7 @@ public:
         {
             if (leftPaddlePositionY <= (360 - (leftPaddle.GetComponent<Canis::RectTransformComponent>().size.y / 2)))
             {
-                leftPaddlePositionY= leftPaddlePositionY + 3; //put some sort of speed up to this, 1 pixel a frame is slow.
+                leftPaddlePositionY= leftPaddlePositionY + 3; //put some sort of speed up to this, 3 pixels a frame is slow, but have it be fps independant.
             }
         }
         if(GetInputManager().GetKey(SDL_SCANCODE_S))
