@@ -45,7 +45,7 @@ Entities:
       color: [1.0, 1.0, 1.0, 1.0]
     Canis::Sprite2DComponent:
       uv: [0.0, 0.0, 1.0, 1.0]
-      texture: "assets/textures/Knux_Disperssed.jpg"
+      texture: "assets/textures/KnuxHolding.jpg"
   - ball:
     Canis::RectTransformComponent:
       active: true
