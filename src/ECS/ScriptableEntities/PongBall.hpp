@@ -46,9 +46,11 @@ public:
         float halfSizeX = rect.size.x/2.0f;
         float halfSizeY = rect.size.y/2.0f;
 
-        /*if (rect.position.x + halfSizeX >= GetWindow().GetScreenWidth()/2.0f ||
-                rect.position.x - halfSizeX <= GetWindow().GetScreenWidth()/-2.0f)
-            m_direction.x *= -1.0f; //invert the direction its going, when hit left side and right side*/
+        if (rect.position.x + halfSizeX >= GetWindow().GetScreenWidth()/2.0f ||
+                rect.position.x - halfSizeX <= GetWindow().GetScreenWidth()/-2.0f) {
+            rect.position = vec2(0.0, 0.0); //Instead of inverting direction, Ill reset the ball position
+            m_speed = 150.0f;
+            }
 
         if (
             //left paddle if
@@ -62,6 +64,10 @@ public:
             //end if parameters
         {
             m_direction.x *= -1.0f;
+            if (m_speed <= 500.0f)
+            {
+                m_speed += 10.0f;
+            }
         }
 
         if (rect.position.y + halfSizeY >= GetWindow().GetScreenHeight()/2.0f ||
