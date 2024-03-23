@@ -15,7 +15,8 @@ uniform float TIME;
 
 void main() {
 	vec2 movedUV = fragmentUV + vec2(TIME, TIME);
-	vec4 textureColor = texture(mySampler, movedUV);
+	//vec4 textureColor = texture(mySampler, movedUV);
+	vec4 textureColor = texture(mySampler, fragmentUV);
 
 	color = textureColor * fragmentColor;
 	if (textureColor == vec4(1.0, 1.0, 1.0, 1.0))

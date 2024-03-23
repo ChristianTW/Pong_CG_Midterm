@@ -18,6 +18,8 @@
 #include "ECS/ScriptableEntities/PongBall.hpp"
 #include "ECS/ScriptableEntities/FPSCounter.hpp"
 #include "ECS/ScriptableEntities/Paddle.hpp"
+#include "ECS/ScriptableEntities/ScoreCounter.hpp"
+#include "ECS/ScriptableEntities/BackgroundScript.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -39,6 +41,8 @@ int main(int argc, char* argv[])
     app.AddDecodeScriptableEntity(DecodePongBall);
     app.AddDecodeScriptableEntity(DecodeFPSCounter);
     app.AddDecodeScriptableEntity(DecodePaddle);
+    app.AddDecodeScriptableEntity(DecodeScoreCounter);
+    app.AddDecodeScriptableEntity(DecodeBackgroundScript);
 
     // decode component
     app.AddDecodeComponent(Canis::DecodeTransformComponent);
