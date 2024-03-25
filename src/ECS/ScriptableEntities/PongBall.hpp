@@ -8,13 +8,15 @@
 class PongBall : public Canis::ScriptableEntity
 {
 private:
-    glm::vec2   m_direction;
-    float       m_speed;
+   
+    
     float       m_timeBetweenAnimation = 3.0f;
     float       m_countDown = 0.0f;
-    unsigned int m_animIndex = 0;
     std::vector<glm::vec2> m_spawnPoints = {};
 public:
+    bool gameStarted= false;
+    glm::vec2   m_direction;
+    float       m_speed;
     void OnCreate()
     {
         m_countDown = m_timeBetweenAnimation;
@@ -22,8 +24,10 @@ public:
 
     void OnReady()
     {
+
         m_direction = glm::vec2(1.0f, 0.4f);
         m_speed = 150.0f;
+
     }
     
     void OnDestroy()
@@ -112,6 +116,10 @@ public:
         {
             //GetScene().Instantiate("assets/prefebs/test_character.scene");
         }
+        if (GetInputManager().JustPressedKey(SDLK_RETURN))
+        {
+            //StartGame();
+        }
         
         if(GetInputManager().GetKey(SDL_SCANCODE_W))
         {
@@ -123,6 +131,12 @@ public:
         }
     }
 };
+
+    void StartGame()
+    {
+       // m_direction = glm::vec2(1.0f, 0.4f);
+       // m_speed = 150.0f;
+    };
 
 bool DecodePongBall(const std::string &_name, Canis::Entity &_entity)
 {

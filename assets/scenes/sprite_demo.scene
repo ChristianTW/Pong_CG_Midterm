@@ -63,7 +63,7 @@ Entities:
       color: [1.0, 1.0, 1.0, 1.0]
     Canis::Sprite2DComponent:
       uv: [0.0, 0.0, 1.0, 1.0]
-      texture: "assets/textures/ball.png"
+      texture: "assets/textures/new_ball.png"
     Canis::CircleColliderComponent:
       center: [0.0, 0.0]
       radius: 128.0
