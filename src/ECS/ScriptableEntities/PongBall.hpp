@@ -4,6 +4,7 @@
 #include <Canis/ScriptableEntity.hpp>
 #include <Canis/ECS/Components/RectTransformComponent.hpp>
 
+
 class PongBall : public Canis::ScriptableEntity
 {
 private:
@@ -35,21 +36,37 @@ public:
         using namespace Canis; //if you're sick of using "Canis::" before all canis things.
         Canis::Entity leftPaddle = entity.GetEntityWithTag("paddleLeft");
         Canis::Entity rightPaddle = entity.GetEntityWithTag("paddleRight");
+        Canis::Entity scoreCounter = entity.GetEntityWithTag("ScoreCounter");
         auto& rectLeftPaddle = leftPaddle.GetComponent<Canis::RectTransformComponent>();
         auto& rectRightPaddle = rightPaddle.GetComponent<Canis::RectTransformComponent>();
-        auto& colorLeftPaddle = leftPaddle.GetComponent<Canis::ColorComponent>();
+        //auto& colorLeftPaddle = leftPaddle.GetComponent<Canis::ColorComponent>();
+        auto& scoreScriptComp = scoreCounter.GetComponent<Canis::ScriptComponent>();
 
         //Log(std::to_string(rectLeftPaddle.position.x));
 
         auto& rect = GetComponent<Canis::RectTransformComponent>();
+        auto& colorComp = GetComponent<Canis::ColorComponent>();
 
         float halfSizeX = rect.size.x/2.0f;
         float halfSizeY = rect.size.y/2.0f;
 
-        if (rect.position.x + halfSizeX >= GetWindow().GetScreenWidth()/2.0f ||
-                rect.position.x - halfSizeX <= GetWindow().GetScreenWidth()/-2.0f) {
+
+        if (rect.position.x + halfSizeX >= GetWindow().GetScreenWidth()/2.0f) // right if
+        {
             rect.position = vec2(0.0, 0.0); //Instead of inverting direction, Ill reset the ball position
-            m_speed = 150.0f;
+            m_speed = 150.0f; //reset speed
+            colorComp.color = glm::vec4(255.0f / 255, 255.0f / 255, 255.0f / 255, 1.0f); //set color to white
+            //CALL SCOREBOARD SCRIPT HERE, THE FUNCTION THAT ADDS POINTS BLUE = +1 point
+            //static_cast<ScoreCounter*>(scoreCounter.GetComponent<Canis::ScriptComponent>().Instance)->UpdateScore(int m_leftScore = 1, int m_rightScore = 1);
+                
+        }
+        if (rect.position.x - halfSizeX <= GetWindow().GetScreenWidth()/-2.0f) // left if
+            {
+            rect.position = vec2(0.0, 0.0); //Instead of inverting direction, Ill reset the ball position
+            m_speed = 150.0f; //reset speed
+            colorComp.color = glm::vec4(255.0f / 255, 255.0f / 255, 255.0f / 255, 1.0f); //set color to white
+            //CALL SCOREBOARD SCRIPT HERE, THE FUNCTION THAT ADDS POINTS BLUE = +1 point
+            //static_cast<ScoreCounter*>(scoreCounter.GetComponent<Canis::ScriptComponent>().Instance)->UpdateScore(int m_leftScore = 1, int m_rightScore = 1);
             }
 
         if (
@@ -68,6 +85,15 @@ public:
             {
                 m_speed += 10.0f;
             }
+            if (rect.position.x <= -1.0f) // if left side
+            {
+                colorComp.color = glm::vec4(68.0f / 255, 143.0f / 255, 255.0f / 255,1.0f); //set color to blue (68,143,255)
+            }
+            if (rect.position.x >= 1.0f) // if right side
+            {
+                colorComp.color = glm::vec4(255.0f / 255, 68.0f / 255, 68.0f / 255,1.0f); //set color to red (255,68,68)
+            }
+            
         }
 
         if (rect.position.y + halfSizeY >= GetWindow().GetScreenHeight()/2.0f ||
