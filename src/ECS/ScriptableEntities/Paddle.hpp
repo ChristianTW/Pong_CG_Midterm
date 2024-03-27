@@ -18,65 +18,58 @@ public:
     void OnCreate()
     {
         Canis::Log("Paddle Loaded");
-        leftPaddlePositionX = (GetWindow().GetScreenWidth()/-2.0f) + 32; //set paddle's x position to 32 before whatever edge of the screen its on
-        rightPaddlePositionX = (GetWindow().GetScreenWidth()/2.0f) - 32;
+        leftPaddlePositionX = (GetWindow().GetScreenWidth() / -2.0f) + 32; // set paddle's x position to 32 before whatever edge of the screen its on
+        rightPaddlePositionX = (GetWindow().GetScreenWidth() / 2.0f) - 32;
         leftPaddle = entity.GetEntityWithTag("paddleLeft");
         rightPaddle = entity.GetEntityWithTag("paddleRight");
     }
 
     void OnReady()
     {
-        
     }
-    
+
     void OnDestroy()
     {
-
     }
 
     void OnUpdate(float _dt)
     {
-       auto& rect = GetComponent<Canis::RectTransformComponent>();
+        auto &rect = GetComponent<Canis::RectTransformComponent>();
 
-        if(GetInputManager().GetKey(SDL_SCANCODE_W))
+        if (GetInputManager().GetKey(SDL_SCANCODE_W) && !GetInputManager().GetKey(SDL_SCANCODE_S))
         {
             if (leftPaddlePositionY <= (360 - (leftPaddle.GetComponent<Canis::RectTransformComponent>().size.y / 2)))
             {
-                leftPaddlePositionY= leftPaddlePositionY + 3; //put some sort of speed up to this, 3 pixels a frame is slow, but have it be fps independant.
+                leftPaddlePositionY = leftPaddlePositionY + (1500 * _dt); // put some sort of speed up to this, 3 pixels a frame is slow, but have it be fps independant.
             }
         }
-        if(GetInputManager().GetKey(SDL_SCANCODE_S))
+        if (GetInputManager().GetKey(SDL_SCANCODE_S) && !GetInputManager().GetKey(SDL_SCANCODE_W))
         {
             if (leftPaddlePositionY >= (-360 + (leftPaddle.GetComponent<Canis::RectTransformComponent>().size.y / 2)))
             {
-                leftPaddlePositionY = leftPaddlePositionY - 3;
+                leftPaddlePositionY = leftPaddlePositionY - (1500 * _dt);
             }
         }
-        if(GetInputManager().GetKey(SDL_SCANCODE_UP))
+        if (GetInputManager().GetKey(SDL_SCANCODE_UP) && !GetInputManager().GetKey(SDL_SCANCODE_DOWN))
         {
             if (rightPaddlePositionY <= (360 - (rightPaddle.GetComponent<Canis::RectTransformComponent>().size.y / 2)))
             {
-                rightPaddlePositionY= rightPaddlePositionY + 3; //put some sort of speed up to this, 1 pixel a frame is slow.
+                rightPaddlePositionY = rightPaddlePositionY + (1500 * _dt); // put some sort of speed up to this, 1 pixel a frame is slow.
             }
         }
-        if(GetInputManager().GetKey(SDL_SCANCODE_DOWN))
+        if (GetInputManager().GetKey(SDL_SCANCODE_DOWN) && !GetInputManager().GetKey(SDL_SCANCODE_UP))
         {
             if (rightPaddlePositionY >= (-360 + (rightPaddle.GetComponent<Canis::RectTransformComponent>().size.y / 2)))
             {
-                rightPaddlePositionY = rightPaddlePositionY - 3;
+                rightPaddlePositionY = rightPaddlePositionY - (1500 * _dt);
             }
         }
 
+        leftPaddle.GetComponent<Canis::RectTransformComponent>().position.x = leftPaddlePositionX;
+        leftPaddle.GetComponent<Canis::RectTransformComponent>().position.y = leftPaddlePositionY;
 
-
-
-        
-            leftPaddle.GetComponent<Canis::RectTransformComponent>().position.x = leftPaddlePositionX;
-            leftPaddle.GetComponent<Canis::RectTransformComponent>().position.y = leftPaddlePositionY;
-
-        
-            rightPaddle.GetComponent<Canis::RectTransformComponent>().position.x = rightPaddlePositionX;
-            rightPaddle.GetComponent<Canis::RectTransformComponent>().position.y = rightPaddlePositionY;
+        rightPaddle.GetComponent<Canis::RectTransformComponent>().position.x = rightPaddlePositionX;
+        rightPaddle.GetComponent<Canis::RectTransformComponent>().position.y = rightPaddlePositionY;
     }
 };
 

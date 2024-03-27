@@ -24,7 +24,7 @@ Entities:
       scale: 1.0
       depth: 0.1
     Canis::ColorComponent:
-      color: [0.0, 1.0, 1.0, 1.0]
+      color: [0.0, 0.0, 0.0, 1.0]
     Canis::TextComponent:
       assetId:
         path: "assets/fonts/ComicNeue-Regular.ttf"

@@ -3,6 +3,7 @@
 #include <vector>
 #include <Canis/ScriptableEntity.hpp>
 #include <Canis/ECS/Components/RectTransformComponent.hpp>
+#include <Canis/ECS/Components/TextComponent.hpp>
 
 class ScoreCounter: public Canis::ScriptableEntity
 {
@@ -13,7 +14,7 @@ public:
     void OnCreate()
     {
         auto& textComp = GetComponent<Canis::TextComponent>();
-        textComp.text = ("Text component grabbed");
+        textComp.text = ("Press Enter");
     }
 
     void OnReady()
@@ -33,14 +34,17 @@ public:
         //textComp.text = (std::to_string(testInt));
 
        auto& rect = GetComponent<Canis::RectTransformComponent>();
-       UpdateScore(leftScore,rightScore);
+       //UpdateScore(leftScore,rightScore);
     }
-    public: void UpdateScore(int m_leftScore, int m_rightScore, std::string m_textOverride = "", int m_textOverrideTimer = 5) //first two are for updating score, second two are if you want to just print text, the string is what you want to display and the timer int is for how long (in seconds)
+    
+    void UpdateScore(int m_leftScoreAdd = 0, int m_rightScoreAdd = 0, std::string m_textOverride = "", int m_textOverrideTimer = 5) //first two are for updating score, second two are if you want to just print text, the string is what you want to display and the timer int is for how long (in seconds)
     {
+        leftScore = leftScore + m_leftScoreAdd;
+        rightScore = rightScore + m_rightScoreAdd;
         auto& textComp = GetComponent<Canis::TextComponent>();
         if (m_textOverride == "")
         {
-            textComp.text = (std::to_string(m_leftScore) + " : " + std::to_string(m_rightScore));
+            textComp.text = (std::to_string(leftScore) + " : " + std::to_string(rightScore));
         }
         else
         {
