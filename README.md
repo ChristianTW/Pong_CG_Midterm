@@ -1,3 +1,15 @@
+# Pong Game for Computer Graphics Class 2024
+
+A simple game for a project in the SAU Computer Graphics class in spring 2024.
+
+Controls are W and S for the left player and Up and Down for the right.
+
+'knux' for a thing
+
+to build, you must change a submodule file, in the provided image.
+
+
+
 # canis-demos
 
 
