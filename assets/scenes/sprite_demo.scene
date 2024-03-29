@@ -41,13 +41,13 @@ Entities:
       size: [0.0, 0.0]
       originOffset: [0.0, 0.0]
       rotation: 0
-      scale: 1.0
+      scale: 0.0
       depth: 0.9
     Canis::ColorComponent:
       color: [1.0, 1.0, 1.0, 1.0]
     Canis::Sprite2DComponent:
       uv: [0.0, 0.0, 1.0, 1.0]
-      texture: "assets/textures/KnuxHolding.jpg"
+      texture: "assets/textures/background_final.png"
     Canis::ScriptComponent: BackgroundScript
   - ball:
     Canis::RectTransformComponent:

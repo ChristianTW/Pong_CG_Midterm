@@ -3,6 +3,7 @@
 #include <vector>
 #include <Canis/ScriptableEntity.hpp>
 #include <Canis/ECS/Components/RectTransformComponent.hpp>
+#include <Canis/ECS/Components/Sprite2DComponent.hpp>
 
 class BackgroundScript : public Canis::ScriptableEntity
 {
@@ -59,7 +60,8 @@ public:
             {
                 weirdMoveY = weirdMoveY - (250.0f * _dt);
             }
-            Canis::Log(std::to_string(250.0f * _dt));
+            //Canis::Log(std::to_string(250.0f * _dt));
+            
         }
     }
 
@@ -67,18 +69,29 @@ public:
     {
         auto &rect = GetComponent<Canis::RectTransformComponent>();
 
+        //auto &spriteComp = GetComponent<Canis::Sprite2DComponent>();
+
+        //spriteComp.texture = ("assets/textures/Knux_uhhh.png");
+        //Canis::Log(std::to_string());
+
+
+
+        
+
         if (!moving)
         {
             rect.size.x = GetWindow().GetScreenWidth();
             rect.size.y = GetWindow().GetScreenHeight();
             weirdMoveX = GetWindow().GetScreenWidth();
             weirdMoveY = GetWindow().GetScreenHeight();
+            rect.rotation = 0.0f;
         }
         else
         {
             backgroundMath(_dt);
             rect.size.x = weirdMoveX;
             rect.size.y = weirdMoveY;
+            rect.rotation = rect.rotation + 0.0001f;
         }
 
         if (GetInputManager().GetKey(SDL_SCANCODE_K))

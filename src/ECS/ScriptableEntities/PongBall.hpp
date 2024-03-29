@@ -40,6 +40,7 @@ public:
 
     void OnUpdate(float _dt)
     {
+
         using namespace Canis; // if you're sick of using "Canis::" before all canis things.
         Canis::Entity leftPaddle = entity.GetEntityWithTag("paddleLeft");
         Canis::Entity rightPaddle = entity.GetEntityWithTag("paddleRight");
