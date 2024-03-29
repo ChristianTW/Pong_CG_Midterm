@@ -61,22 +61,14 @@ public:
                 weirdMoveY = weirdMoveY - (250.0f * _dt);
             }
             //Canis::Log(std::to_string(250.0f * _dt));
-            
+            auto &spriteComp = GetComponent<Canis::Sprite2DComponent>();
+            spriteComp.texture =  Canis::AssetManager::GetTexture("assets/textures/Knux_uhhhh.png")->GetTexture();
         }
     }
 
     void OnUpdate(float _dt)
     {
         auto &rect = GetComponent<Canis::RectTransformComponent>();
-
-        //auto &spriteComp = GetComponent<Canis::Sprite2DComponent>();
-
-        //spriteComp.texture = ("assets/textures/Knux_uhhh.png");
-        //Canis::Log(std::to_string());
-
-
-
-        
 
         if (!moving)
         {
@@ -85,6 +77,8 @@ public:
             weirdMoveX = GetWindow().GetScreenWidth();
             weirdMoveY = GetWindow().GetScreenHeight();
             rect.rotation = 0.0f;
+            auto &spriteComp = GetComponent<Canis::Sprite2DComponent>();
+            spriteComp.texture =  Canis::AssetManager::GetTexture("assets/textures/background_final.png")->GetTexture();
         }
         else
         {
